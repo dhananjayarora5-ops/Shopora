@@ -196,7 +196,9 @@ const elements = {
   searchButton: document.getElementById('search-button'),
   sortSelect: document.getElementById('sort-select'),
   filterLabel: document.getElementById('filter-label'),
-  categoryButtons: document.querySelectorAll('.category-button')
+  categoryButtons: document.querySelectorAll('.category-button'),
+  wishlistToggle: document.getElementById('wishlist-toggle'),
+  wishlistCount: document.getElementById('wishlist-count')
 };
 
 let activeCategory = 'all';
@@ -217,11 +219,13 @@ function renderProducts() {
   }
 
   elements.productList.innerHTML = visibleProducts.map(renderProductCard).join('');
+  attachWishlistHandlers();
 }
 
 function renderProductCard(product) {
   return `
     <article class="product-card">
+      <button class="wish-button" data-product-id="${product.id}" aria-pressed="false" title="Add to wishlist">♡</button>
       <img src="${product.image}" alt="${product.alt}" loading="lazy" />
       <div class="product-info">
         <span class="product-category">${capitalize(product.category)}</span>
@@ -279,6 +283,68 @@ function updateCart() {
   }, 0).toFixed(2);
 }
 
+let wishlist = new Set();
+
+function loadWishlist() {
+  try {
+    const raw = localStorage.getItem('shopora_wishlist');
+    if (raw) {
+      JSON.parse(raw).forEach(id => wishlist.add(Number(id)));
+    }
+  } catch (e) {
+    wishlist = new Set();
+  }
+}
+
+function saveWishlist() {
+  localStorage.setItem('shopora_wishlist', JSON.stringify(Array.from(wishlist)));
+}
+
+function updateWishlistCount() {
+  if (elements.wishlistCount) elements.wishlistCount.textContent = wishlist.size;
+  if (elements.wishlistToggle) elements.wishlistToggle.setAttribute('aria-label', `Wishlist (${wishlist.size})`);
+}
+
+function attachWishlistHandlers() {
+  const buttons = document.querySelectorAll('.wish-button');
+  buttons.forEach((btn) => {
+    const id = Number(btn.dataset.productId);
+    btn.classList.toggle('active', wishlist.has(id));
+    btn.setAttribute('aria-pressed', wishlist.has(id));
+    if (btn._wishHandler) btn.removeEventListener('click', btn._wishHandler);
+    btn._wishHandler = () => {
+      toggleWishlist(id, btn);
+    };
+    btn.addEventListener('click', btn._wishHandler);
+  });
+}
+
+function toggleWishlist(productId, btnEl) {
+  if (wishlist.has(productId)) {
+    wishlist.delete(productId);
+    btnEl.classList.remove('active');
+    btnEl.setAttribute('aria-pressed', 'false');
+  } else {
+    wishlist.add(productId);
+    btnEl.classList.add('active');
+    btnEl.setAttribute('aria-pressed', 'true');
+  }
+  saveWishlist();
+  updateWishlistCount();
+}
+
+function showWishlist() {
+  if (!wishlist.size) {
+    alert('Your wishlist is empty.');
+    return;
+  }
+  const items = Array.from(wishlist).map(id => {
+    const p = products.find(x => x.id === Number(id));
+    return p ? `• ${p.title}` : `• Item ${id}`;
+  }).join('\n');
+  alert('Wishlist:\n' + items);
+}
+
 function changeQuantity(productId, delta) {
   if (!cart[productId]) return;
   cart[productId] += delta;
@@ -327,11 +393,17 @@ function scrollToProducts() {
 }
 
 window.addEventListener('load', () => {
+  loadWishlist();
   renderProducts();
   updateCart();
+  updateWishlistCount();
 });
 
 elements.searchButton.addEventListener('click', applySearch);
+
+if (elements.wishlistToggle) {
+  elements.wishlistToggle.addEventListener('click', showWishlist);
+}
 
 elements.searchInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
