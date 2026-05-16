@@ -13,6 +13,7 @@ const elements = {
   searchInput: document.getElementById('search-input'),
   searchButton: document.getElementById('search-button'),
   categoryButtons: document.querySelectorAll('.category-button'),
+  sortSelect: document.getElementById('sort-select'),
   wishlistToggle: document.getElementById('wishlist-toggle'),
   wishlistCount: document.getElementById('wishlist-count'),
   cartPreviewItems: document.querySelector('.cart-preview-items'),
@@ -80,29 +81,30 @@ function renderProductCard(product) {
   const hasDiscount = product.discount && product.priceOld;
   const stockLabel = product.stock > 0 ? (product.stock > 10 ? 'In stock' : `Only ${product.stock} left`) : 'Out of stock';
   const stockClass = product.stock > 10 ? 'in-stock' : product.stock > 0 ? 'low-stock' : 'out-of-stock';
+  const priceOld = hasDiscount ? `<span class="product-old-price">$${product.priceOld.toFixed(2)}</span>` : '';
+  const badge = product.badge ? `<span class="card-badge">${product.badge}</span>` : '<span class="card-badge subtle">Curated</span>';
 
   return `
     <article class="product-card">
       <button class="wish-button" data-product-id="${product.id}" aria-pressed="${wishlist.has(product.id)}">${wishlist.has(product.id) ? '♥' : '♡'}</button>
-      ${product.badge ? `<span class="badge-pill">${product.badge}</span>` : ''}
       <a class="product-link" href="product.html?id=${product.id}">
         <img src="${product.image}" alt="${product.alt}" loading="lazy" />
       </a>
       <div class="product-card-content">
+        <div class="product-kicker">
+          ${badge}
+          <span>${product.brand}</span>
+        </div>
         <div class="product-card-header">
-          <span class="badge-pill">${product.brand}</span>
           <span class="stock-pill ${stockClass}">${stockLabel}</span>
+          <span class="product-rating">★ ${product.rating.toFixed(1)} <em>${product.reviews}</em></span>
         </div>
         <h3 class="product-title"><a href="product.html?id=${product.id}">${product.title}</a></h3>
-        <div class="product-rating">
-          <span>★ ${product.rating.toFixed(1)}</span>
-          <span>(${product.reviews} reviews)</span>
-        </div>
         <p class="product-description">${product.description}</p>
         <div class="product-card-footer">
           <div class="price-block">
             <span class="product-price">$${product.price.toFixed(2)}</span>
-            ${hasDiscount ? `<span class="product-old-price">$${product.priceOld.toFixed(2)}</span>` : ''}
+            ${priceOld}
           </div>
           <button type="button" class="add-to-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>Add to cart</button>
         </div>
@@ -264,6 +266,16 @@ function applySearch() {
   renderProducts();
 }
 
+function applyCategory(category) {
+  activeCategory = category;
+  elements.categoryButtons.forEach((button) => {
+    const isActive = button.dataset.category === category;
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+  renderProducts();
+}
+
 function scrollToProducts() {
   const productsSection = document.getElementById('products');
   if (productsSection) productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -288,6 +300,16 @@ window.addEventListener('load', () => {
       if (event.key === 'Enter') {
         applySearch();
       }
+    });
+  }
+  elements.categoryButtons.forEach((button) => {
+    button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
+    button.addEventListener('click', () => applyCategory(button.dataset.category || 'all'));
+  });
+  if (elements.sortSelect) {
+    elements.sortSelect.addEventListener('change', (event) => {
+      activeSort = event.target.value;
+      renderProducts();
     });
   }
   if (elements.checkoutButton) {

@@ -6,7 +6,7 @@
   <title>Shopora | Premium Online Shopping for Modern Brands</title>
   <meta name="description" content="Shopora is a premium e-commerce storefront with curated collections, trusted checkout, and a modern shopping experience." />
   <meta name="keywords" content="premium ecommerce, online store, shopora, startup shopping, modern storefront" />
-  <meta name="theme-color" content="#1f2a55" />
+  <meta name="theme-color" content="#101820" />
   <meta property="og:title" content="Shopora | Premium Online Shopping" />
   <meta property="og:description" content="Discover Shopora's premium shopping experience with curated collections, exclusive offers, and trusted checkout." />
   <meta property="og:image" content="shopping-cart.jpg" />
@@ -27,7 +27,7 @@
   </div>
   <header class="site-header">
     <div class="announcement container">
-      Free shipping on orders over $99 • Secure payments • 30-day premium returns.
+      Private launch offer: complimentary delivery over $99, 30-day returns, and secure express checkout.
     </div>
     <div class="header-top container">
       <a class="brand" href="index.html">
@@ -44,11 +44,11 @@
       <div class="header-actions">
         <div class="search-group">
           <label for="search-input" class="sr-only">Search products</label>
-          <input id="search-input" type="search" placeholder="Search for headphones, home decor, sneakers..." />
+          <input id="search-input" type="search" placeholder="Search headphones, leather, skincare..." />
           <button id="search-button" type="button">Search</button>
         </div>
         <button type="button" class="action-button user-menu">
-          Hi, Guest
+          Account
           <div class="user-menu-panel">
             <a href="about.html">Your profile</a>
             <a href="contact.html">Support</a>
@@ -72,74 +72,99 @@
   <main>
     <section class="hero container" id="home">
       <div class="hero-copy">
-        <span class="hero-badge">New collection</span>
-        <h1>Shopora brings premium shopping to your daily life.</h1>
-        <p class="hero-text">Curated collections, trusted checkout, and polished discovery for modern buyers — built to feel like a real online storefront.</p>
+        <span class="hero-badge">Spring edit 2026</span>
+        <h1>Curated essentials with a luxury retail feel.</h1>
+        <p class="hero-text">Shopora brings premium electronics, fashion, home, fitness, and beauty finds into one calm, trusted storefront designed for confident buying.</p>
         <div class="hero-actions">
-          <button class="primary-button" type="button" onclick="scrollToProducts()">Shop latest deals</button>
-          <a class="secondary-link" href="about.html">Learn about Shopora</a>
+          <button class="primary-button" type="button" onclick="scrollToProducts()">Shop the edit</button>
+          <a class="secondary-link" href="about.html">Our standard</a>
         </div>
         <div class="hero-trust-grid">
-          <span class="trust-pill">Free shipping over $99</span>
-          <span class="trust-pill">Secure payments</span>
-          <span class="trust-pill">30-day return policy</span>
+          <span class="trust-pill">4.8 average rating</span>
+          <span class="trust-pill">Express dispatch</span>
+          <span class="trust-pill">Protected checkout</span>
         </div>
       </div>
       <div class="hero-image-card" aria-label="Premium product showcase">
         <img src="shopping-cart.jpg" alt="Premium shopping collection with accessories" />
+        <div class="hero-product-note">
+          <span>Editor pick</span>
+          <strong>Minimal tech, home, and wellness pieces.</strong>
+        </div>
       </div>
+    </section>
+
+    <section class="collection-strip container" aria-label="Shop by collection">
+      <button type="button" class="category-button active" data-category="all">All</button>
+      <button type="button" class="category-button" data-category="electronics">Electronics</button>
+      <button type="button" class="category-button" data-category="fashion">Fashion</button>
+      <button type="button" class="category-button" data-category="home">Home</button>
+      <button type="button" class="category-button" data-category="fitness">Fitness</button>
+      <button type="button" class="category-button" data-category="beauty">Beauty</button>
     </section>
 
     <section class="stats-grid container" aria-label="Trust statistics">
       <article class="stat-card">
-        <span>10,000+</span>
-        <p>Happy customers</p>
+        <span>10k+</span>
+        <p>Orders curated for modern homes and wardrobes.</p>
       </article>
       <article class="stat-card">
-        <span>Fast delivery</span>
-        <p>Next-day fulfillment and premium tracking.</p>
+        <span>24h</span>
+        <p>Fast dispatch on eligible launch edit products.</p>
       </article>
       <article class="stat-card">
-        <span>Secure payments</span>
-        <p>Visa, Mastercard, PayPal, Apple Pay supported.</p>
+        <span>30 days</span>
+        <p>Simple returns with clear customer protection.</p>
       </article>
       <article class="stat-card">
-        <span>Trusted support</span>
-        <p>Live customer care available 24/7.</p>
+        <span>4.8/5</span>
+        <p>Average review across the premium catalog.</p>
       </article>
     </section>
 
     <section class="featured-panels container" aria-label="Why Shopora">
       <article class="featured-card">
-        <h3>Curated for premium quality</h3>
-        <p>We hand-select every product for design, performance, and customer satisfaction.</p>
+        <span class="eyebrow">01</span>
+        <h3>Editorial merchandising</h3>
+        <p>Products are grouped by lifestyle, use case, and finish so customers can browse like a premium department store.</p>
       </article>
       <article class="featured-card">
-        <h3>Fast and reliable delivery</h3>
-        <p>Track every order with confidence, from checkout to your door.</p>
+        <span class="eyebrow">02</span>
+        <h3>Clear buying confidence</h3>
+        <p>Ratings, stock status, return support, and secure payment signals stay visible before checkout.</p>
       </article>
       <article class="featured-card">
-        <h3>Real support and protection</h3>
-        <p>Secure checkout, easy returns, and a clear policy built for shoppers.</p>
+        <span class="eyebrow">03</span>
+        <h3>Premium service layer</h3>
+        <p>Fast delivery promises and support links make the store feel active, trustworthy, and customer ready.</p>
       </article>
     </section>
 
     <section class="product-grid container" id="products" aria-labelledby="products-heading">
       <div class="section-heading">
         <div>
+          <p class="eyebrow">The Shopora edit</p>
           <h2 id="products-heading">Featured products</h2>
-          <p>Browse premium items across electronics, fashion, home, fitness, and beauty.</p>
+          <p>Browse premium items across electronics, fashion, home, fitness, and beauty with instant filtering.</p>
         </div>
+        <label class="sort-control">
+          <span>Sort</span>
+          <select id="sort-select" aria-label="Sort products">
+            <option value="default">Recommended</option>
+            <option value="low-high">Price: Low to high</option>
+            <option value="high-low">Price: High to low</option>
+          </select>
+        </label>
       </div>
       <div id="product-list" class="product-grid"></div>
     </section>
 
     <section class="brand-strip container" aria-label="Trusted brands">
-      <div class="brand-logo">Atlas Gear</div>
-      <div class="brand-logo">Nimbus Home</div>
+      <div class="brand-logo">SonicWave</div>
+      <div class="brand-logo">Noble Thread</div>
       <div class="brand-logo">Luxe Fit</div>
-      <div class="brand-logo">Aura Studio</div>
-      <div class="brand-logo">Core Wireless</div>
+      <div class="brand-logo">Aurora Skin</div>
+      <div class="brand-logo">CloudRest</div>
     </section>
 
     <section class="testimonials container" aria-labelledby="testimonials-heading">
