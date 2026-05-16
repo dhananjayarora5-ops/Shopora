@@ -4,10 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Shopora is a premium demo e-commerce website with electronics, fashion, home goods, and accessories. Browse products, filter categories, search items, and manage your cart in a responsive shopping experience." />
-  <title>Shopora | Premium Demo E-commerce</title>
+  <meta name="keywords" content="ecommerce, startup, premium shop, online store, product showcase, shopora" />
+  <meta name="theme-color" content="#1f2a55" />
+  <meta property="og:title" content="Shopora — Premium Demo E-commerce" />
+  <meta property="og:description" content="Discover Shopora, a premium demo storefront with polished product browsing, smart cart interactions, and a modern mobile-ready design." />
+  <meta property="og:image" content="shopping-cart.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://github.com/dhananjayarora5-ops/Shopora" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shopora | Premium Demo E-commerce" />
+  <meta name="twitter:description" content="Experience Shopora's refined shopping UI with curated product cards, fast checkout, and mobile-first design." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="page-loader" id="page-loader">
+    <div class="loader-ring"></div>
+    <p>Loading Shopora…</p>
+  </div>
   <header class="site-header">
     <div class="announcement container">
       <p>Spring launch sale: free delivery on orders over $99 — premium curation for everyday life.</p>
@@ -49,6 +65,11 @@
           <button class="primary-button" type="button" onclick="scrollToProducts()">Shop Latest Deals</button>
           <a class="secondary-link" href="#products">View all collections</a>
         </div>
+        <div class="hero-trust-grid">
+          <span class="trust-pill">Free shipping over $49</span>
+          <span class="trust-pill">Secure checkout</span>
+          <span class="trust-pill">24/7 premium support</span>
+        </div>
       </div>
       <div class="hero-image-card" aria-label="Featured shopping collection">
         <img src="shopping-cart.jpg" alt="Shopping cart with electronics and accessories" />
@@ -76,7 +97,56 @@
       </div>
       <div id="product-list" class="grid-list"></div>
     </section>
+
+    <section class="newsletter-section container">
+      <div class="newsletter-card">
+        <div class="newsletter-copy">
+          <p class="eyebrow">Stay ahead</p>
+          <h2>Get the newest arrivals and launch previews.</h2>
+          <p>Join our curated mailing list for early access to drops, exclusive offers, and premium styling ideas.</p>
+        </div>
+        <form class="newsletter-form" aria-label="Subscribe to newsletter">
+          <input type="email" placeholder="Enter your email address" aria-label="Email address" />
+          <button class="primary-button" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-top container">
+      <div class="footer-brand">
+        <a class="brand footer-logo" href="index.html">
+          <span class="brand-mark">S</span>
+          <span class="brand-text">Shopora</span>
+        </a>
+        <p>Premium product discovery for modern buyers.</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Company</h3>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+        </div>
+        <div class="footer-column">
+          <h3>Support</h3>
+          <a href="#">Help Center</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="product.html?id=1">Best sellers</a>
+          <a href="wishlist.html">Wishlist</a>
+          <a href="#">New arrivals</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>© 2026 Shopora. Crafted for premium online shopping experiences.</p>
+    </div>
+  </footer>
 
   <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
     <div class="cart-header">

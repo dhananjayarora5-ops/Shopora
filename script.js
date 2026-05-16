@@ -220,6 +220,11 @@ window.addEventListener('load', () => {
   renderProducts();
   updateCart();
   updateWishlistCount();
+  const pageLoader = document.getElementById('page-loader');
+  if (pageLoader) {
+    pageLoader.classList.add('page-loader-hidden');
+    setTimeout(() => pageLoader.remove(), 500);
+  }
 });
 
 elements.searchButton.addEventListener('click', applySearch);
