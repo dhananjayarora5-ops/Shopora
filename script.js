@@ -59,7 +59,7 @@ const products = [
     title: 'Portable Resistance Bands Set',
     description: 'Set of lightweight resistance bands for home cardio and strength training.',
     price: 29.95,
-    image: 'https://images.unsplash.com/photo-1599058917218-12340537e81f?auto=format&fit=crop&w=800&q=80',
+    image: 'resistance-bands.jpg',
     alt: 'Resistance bands on a hardwood floor'
   },
   {
