@@ -5,7 +5,7 @@ const products = [
     title: 'Active Noise Cancelling Headphones',
     description: 'Wireless over-ear headphones with long battery life and ambient sound control.',
     price: 199.99,
-    image: 'https://images.unsplash.com/photo-1516707570264-65b5044df1b4?auto=format&fit=crop&w=800&q=80',
+    image: 'heaphone.jpg',
     alt: 'White wireless headphones with premium design'
   },
   {
