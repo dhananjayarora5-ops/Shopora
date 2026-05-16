@@ -233,7 +233,7 @@ function renderProductCard(product) {
         <p class="product-description">${product.description}</p>
         <div class="product-meta">
           <strong class="product-price">$${product.price.toFixed(2)}</strong>
-          <button type="button" onclick="addToCart(${product.id})">Add to cart</button>
+          <button type="button" class="add-to-cart" onclick="addToCart(${product.id})">Add to cart</button>
         </div>
       </div>
     </article>
