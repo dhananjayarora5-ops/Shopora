@@ -99,7 +99,7 @@ textarea:focus-visible {
 
 .header-top {
   display: grid;
-  grid-template-columns: auto minmax(300px, 0.72fr) minmax(520px, 1fr);
+  grid-template-columns: auto minmax(360px, 0.8fr) minmax(640px, 1fr);
   align-items: center;
   gap: 1.4rem;
   padding: 1.1rem 0;
@@ -180,6 +180,8 @@ textarea:focus-visible {
 }
 
 .search-group button {
+  flex: 0 0 120px;
+  min-width: 120px;
   border: none;
   background: var(--primary);
   color: white;
