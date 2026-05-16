@@ -122,7 +122,7 @@ const products = [
     title: 'Recycled Yoga Mat',
     description: 'Eco-friendly yoga mat with enhanced grip and premium cushioning.',
     price: 39.5,
-    image: 'https://images.unsplash.com/photo-1517430816045-df4b7de7d7c7?auto=format&fit=crop&w=800&q=80',
+    image: 'yoga-mat.jpg',
     alt: 'Person practicing yoga on a recycled mat'
   },
   {
