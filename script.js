@@ -23,7 +23,7 @@ const products = [
     title: 'Minimalist Leather Sneakers',
     description: 'Lightweight leather sneakers with comfortable cushioning for everyday wear.',
     price: 89.0,
-    image: 'https://images.unsplash.com/photo-1528701800489-20d1d97a9373?auto=format&fit=crop&w=800&q=80',
+    image: 'sneaker.jpg',
     alt: 'Pair of minimalist leather sneakers on a white floor'
   },
   {
