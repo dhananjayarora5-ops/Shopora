@@ -18,31 +18,43 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="announcement container">
-      Free shipping on orders over $99 • Secure payments • 30-day premium returns.
-    </div>
-    <div class="header-top container">
+    <div class="header-top marketplace-header container">
       <a class="brand" href="index.html">
         <span class="brand-mark">S</span>
         <span class="brand-text">Shopora</span>
       </a>
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="index.html#products">Shop</a>
-        <a href="about.html">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+      <a class="delivery-chip" href="contact.html">
+        <span>Deliver to</span>
+        <strong>United States</strong>
+      </a>
       <div class="header-actions">
         <div class="search-group">
+          <select id="category-select" aria-label="Search category">
+            <option value="all">All</option>
+            <option value="electronics">Electronics</option>
+            <option value="fashion">Fashion</option>
+            <option value="home">Home</option>
+            <option value="fitness">Fitness</option>
+            <option value="beauty">Beauty</option>
+          </select>
           <label for="search-input" class="sr-only">Search products</label>
-          <input id="search-input" type="search" placeholder="Search for headphones, jackets, cameras..." />
+          <input id="search-input" type="search" placeholder="Search Shopora" />
           <button id="search-button" type="button">Search</button>
         </div>
-        <a href="wishlist.html" class="action-button">Wishlist <span class="badge" id="wishlist-count">0</span></a>
-        <button type="button" id="cart-toggle" class="action-button">Cart <span class="badge" id="cart-count">0</span></button>
+        <a href="wishlist.html" class="action-button"><span>Saved</span><strong>Wishlist <span class="badge" id="wishlist-count">0</span></strong></a>
+        <button type="button" id="cart-toggle" class="action-button cart-action">Cart <span class="badge" id="cart-count">0</span></button>
       </div>
     </div>
+    <nav class="market-nav" aria-label="Marketplace navigation">
+      <div class="container market-nav-inner">
+        <a href="index.html">All</a>
+        <a href="index.html#products">Today's Deals</a>
+        <a href="index.html#products">Best Sellers</a>
+        <a href="contact.html">Customer Service</a>
+        <a href="index.html#products">Electronics</a>
+        <a href="index.html#products">Fashion</a>
+      </div>
+    </nav>
   </header>
   <main class="product-page container">
     <div class="breadcrumb">

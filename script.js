@@ -12,8 +12,12 @@ const elements = {
   overlay: document.getElementById('overlay'),
   searchInput: document.getElementById('search-input'),
   searchButton: document.getElementById('search-button'),
+  categorySelect: document.getElementById('category-select'),
   categoryButtons: document.querySelectorAll('.category-button'),
+  ratingFilters: document.querySelectorAll('.rating-filter'),
+  priceFilters: document.querySelectorAll('.price-filter'),
   sortSelect: document.getElementById('sort-select'),
+  resultsSummary: document.getElementById('results-summary'),
   wishlistToggle: document.getElementById('wishlist-toggle'),
   wishlistCount: document.getElementById('wishlist-count'),
   cartPreviewItems: document.querySelector('.cart-preview-items'),
@@ -25,6 +29,8 @@ const elements = {
 let activeCategory = 'all';
 let activeSort = 'default';
 let activeSearch = '';
+let activeRating = 0;
+let activeMaxPrice = 0;
 
 function loadCartData() {
   try {
@@ -62,7 +68,9 @@ function renderProducts() {
     const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
     const normalizedSearch = activeSearch.toLowerCase();
     const matchesSearch = !normalizedSearch || product.title.toLowerCase().includes(normalizedSearch) || product.description.toLowerCase().includes(normalizedSearch) || product.brand.toLowerCase().includes(normalizedSearch);
-    return matchesCategory && matchesSearch;
+    const matchesRating = !activeRating || product.rating >= activeRating;
+    const matchesPrice = !activeMaxPrice || product.price <= activeMaxPrice;
+    return matchesCategory && matchesSearch && matchesRating && matchesPrice;
   });
 
   if (activeSort === 'low-high') {
@@ -74,6 +82,10 @@ function renderProducts() {
   if (elements.productList) {
     elements.productList.innerHTML = visibleProducts.map(renderProductCard).join('');
     attachWishlistHandlers();
+  }
+  if (elements.resultsSummary) {
+    const department = activeCategory === 'all' ? 'all departments' : activeCategory;
+    elements.resultsSummary.textContent = `${visibleProducts.length} results in ${department}${activeSearch ? ` for "${activeSearch}"` : ''}.`;
   }
 }
 
@@ -101,6 +113,7 @@ function renderProductCard(product) {
         </div>
         <h3 class="product-title"><a href="product.html?id=${product.id}">${product.title}</a></h3>
         <p class="product-description">${product.description}</p>
+        <p class="delivery-note">FREE delivery as soon as tomorrow. Secure transaction.</p>
         <div class="product-card-footer">
           <div class="price-block">
             <span class="product-price">$${product.price.toFixed(2)}</span>
@@ -263,17 +276,28 @@ function closeCart() {
 
 function applySearch() {
   activeSearch = elements.searchInput ? elements.searchInput.value.trim() : '';
+  if (elements.categorySelect) {
+    activeCategory = elements.categorySelect.value || 'all';
+    syncCategoryButtons(activeCategory);
+  }
   renderProducts();
 }
 
 function applyCategory(category) {
   activeCategory = category;
+  syncCategoryButtons(category);
+  if (elements.categorySelect) {
+    elements.categorySelect.value = category;
+  }
+  renderProducts();
+}
+
+function syncCategoryButtons(category) {
   elements.categoryButtons.forEach((button) => {
     const isActive = button.dataset.category === category;
     button.classList.toggle('active', isActive);
     button.setAttribute('aria-pressed', String(isActive));
   });
-  renderProducts();
 }
 
 function scrollToProducts() {
@@ -306,6 +330,21 @@ window.addEventListener('load', () => {
     button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
     button.addEventListener('click', () => applyCategory(button.dataset.category || 'all'));
   });
+  elements.ratingFilters.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeRating = Number(button.dataset.rating) || 0;
+      renderProducts();
+    });
+  });
+  elements.priceFilters.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeMaxPrice = Number(button.dataset.price) || 0;
+      renderProducts();
+    });
+  });
+  if (elements.categorySelect) {
+    elements.categorySelect.addEventListener('change', (event) => applyCategory(event.target.value || 'all'));
+  }
   if (elements.sortSelect) {
     elements.sortSelect.addEventListener('change', (event) => {
       activeSort = event.target.value;

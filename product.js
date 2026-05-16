@@ -135,11 +135,11 @@ function removeFromCart(productId) {
 function toggleWishlist(productId, button) {
   if (wishlist.has(productId)) {
     wishlist.delete(productId);
-    button.textContent = '♡';
+    button.textContent = button.classList.contains('save-button') ? '♡ Add to Wishlist' : '♡';
     button.setAttribute('aria-pressed', 'false');
   } else {
     wishlist.add(productId);
-    button.textContent = '♥';
+    button.textContent = button.classList.contains('save-button') ? '♥ Saved to Wishlist' : '♥';
     button.setAttribute('aria-pressed', 'true');
   }
   saveWishlist();
@@ -183,39 +183,66 @@ function renderDetailPage() {
   }
 
   const isWishlist = wishlist.has(productId);
+  const oldPrice = product.priceOld ? `<span class="product-old-price">$${product.priceOld.toFixed(2)}</span>` : '';
+  const stockText = product.stock > 10 ? 'In Stock' : product.stock > 0 ? `Only ${product.stock} left in stock` : 'Currently unavailable';
 
   detailTarget.innerHTML = `
-    <div class="product-detail-grid">
+    <div class="product-detail-grid amazon-detail">
       <div class="image-panel">
+        <div class="thumb-list">
+          <button type="button"><img src="${product.image}" alt="${product.alt}" /></button>
+          <button type="button"><img src="${product.image}" alt="${product.alt}" /></button>
+          <button type="button"><img src="${product.image}" alt="${product.alt}" /></button>
+        </div>
         <div class="image-zoom-container">
           <img src="${product.image}" alt="${product.alt}" />
-          <span class="zoom-label">Hover to zoom</span>
         </div>
       </div>
       <div class="detail-copy">
-        <span class="eyebrow">Premium product</span>
         <h1>${product.title}</h1>
+        <a class="brand-link" href="index.html#products">Visit the ${product.brand} store</a>
         <div class="product-badges">
           <span class="rating-pill">★ ${product.rating.toFixed(1)}</span>
+          <a href="#reviews">${product.reviews} ratings</a>
           <span class="tag-pill">${product.badge || 'Best seller'}</span>
         </div>
-        <p class="product-price-large">$${product.price.toFixed(2)}</p>
+        <hr />
+        <p class="product-price-large"><span>$</span>${product.price.toFixed(2)}</p>
+        ${oldPrice}
         <p class="product-detail-description">${product.description}</p>
+        <h2>About this item</h2>
         <ul class="product-feature-list">
-          <li>Premium finish with carefully selected materials.</li>
-          <li>Fast delivery and trusted support.</li>
-          <li>Designed for everyday performance.</li>
+          <li>Premium selected item from the ${product.category} department.</li>
+          <li>Customer-rated ${product.rating.toFixed(1)} out of 5 with trusted buyer feedback.</li>
+          <li>Ships fast with secure checkout and easy returns.</li>
+          <li>Designed for everyday use with a refined, modern finish.</li>
         </ul>
-        <div class="product-actions">
-          <button class="primary-button" id="buy-now">Buy now</button>
-          <button class="secondary-button" id="add-to-cart">Add to cart</button>
-          <button class="wish-button" id="detail-wishlist" aria-pressed="${isWishlist}">${isWishlist ? '♥' : '♡'}</button>
-        </div>
-        <div class="shipping-pill">Free delivery on orders over $99</div>
       </div>
+      <aside class="buy-box">
+        <p class="product-price-large"><span>$</span>${product.price.toFixed(2)}</p>
+        <p class="delivery-promise">FREE delivery tomorrow on orders over $99</p>
+        <p class="secure-note">Secure transaction</p>
+        <strong class="stock-state">${stockText}</strong>
+        <label>
+          Quantity
+          <select id="quantity-select">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </label>
+        <button class="add-to-cart" id="add-to-cart">Add to Cart</button>
+        <button class="buy-now-button" id="buy-now">Buy Now</button>
+        <button class="save-button" id="detail-wishlist" aria-pressed="${isWishlist}">${isWishlist ? '♥ Saved to Wishlist' : '♡ Add to Wishlist'}</button>
+        <dl class="seller-info">
+          <div><dt>Ships from</dt><dd>Shopora</dd></div>
+          <div><dt>Sold by</dt><dd>Shopora</dd></div>
+          <div><dt>Returns</dt><dd>30-day policy</dd></div>
+        </dl>
+      </aside>
     </div>
     <div class="product-extra">
-      <h2>Frequently bought together</h2>
+      <h2>Customers also viewed</h2>
       <div class="related-grid">
         ${renderRelatedProducts(productId)}
       </div>

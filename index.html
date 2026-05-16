@@ -26,37 +26,40 @@
     <p>Loading Shopora…</p>
   </div>
   <header class="site-header">
-    <div class="announcement container">
-      Private launch offer: complimentary delivery over $99, 30-day returns, and secure express checkout.
-    </div>
-    <div class="header-top container">
+    <div class="header-top marketplace-header container">
       <a class="brand" href="index.html">
         <span class="brand-mark">S</span>
         <span class="brand-text">Shopora</span>
       </a>
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a href="index.html" class="active">Home</a>
-        <a href="index.html#products">Shop</a>
-        <a href="about.html">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+      <a class="delivery-chip" href="contact.html">
+        <span>Deliver to</span>
+        <strong>United States</strong>
+      </a>
       <div class="header-actions">
         <div class="search-group">
+          <select id="category-select" aria-label="Search category">
+            <option value="all">All</option>
+            <option value="electronics">Electronics</option>
+            <option value="fashion">Fashion</option>
+            <option value="home">Home</option>
+            <option value="fitness">Fitness</option>
+            <option value="beauty">Beauty</option>
+          </select>
           <label for="search-input" class="sr-only">Search products</label>
-          <input id="search-input" type="search" placeholder="Search headphones, leather, skincare..." />
+          <input id="search-input" type="search" placeholder="Search Shopora" />
           <button id="search-button" type="button">Search</button>
         </div>
         <button type="button" class="action-button user-menu">
-          Account
+          <span>Hello, sign in</span>
+          <strong>Account</strong>
           <div class="user-menu-panel">
             <a href="about.html">Your profile</a>
             <a href="contact.html">Support</a>
           </div>
         </button>
-        <a href="wishlist.html" class="action-button">Wishlist <span class="badge" id="wishlist-count">0</span></a>
+        <a href="wishlist.html" class="action-button"><span>Saved</span><strong>Wishlist <span class="badge" id="wishlist-count">0</span></strong></a>
         <div class="cart-preview">
-          <button id="cart-toggle" class="action-button">Cart <span class="badge" id="cart-count">0</span></button>
+          <button id="cart-toggle" class="action-button cart-action">Cart <span class="badge" id="cart-count">0</span></button>
           <div class="cart-panel">
             <h4>Cart preview</h4>
             <div class="cart-preview-items">
@@ -67,85 +70,68 @@
         </div>
       </div>
     </div>
+    <nav class="market-nav" aria-label="Marketplace navigation">
+      <div class="container market-nav-inner">
+        <button type="button" class="category-button active" data-category="all">All</button>
+        <a href="#products">Today's Deals</a>
+        <a href="#products">Best Sellers</a>
+        <a href="#products">New Releases</a>
+        <a href="contact.html">Customer Service</a>
+        <button type="button" class="category-button" data-category="electronics">Electronics</button>
+        <button type="button" class="category-button" data-category="fashion">Fashion</button>
+        <button type="button" class="category-button" data-category="home">Home</button>
+        <button type="button" class="category-button" data-category="beauty">Beauty</button>
+      </div>
+    </nav>
   </header>
 
   <main>
-    <section class="hero container" id="home">
+    <section class="market-hero container" id="home">
       <div class="hero-copy">
-        <span class="hero-badge">Spring edit 2026</span>
-        <h1>Curated essentials with a luxury retail feel.</h1>
-        <p class="hero-text">Shopora brings premium electronics, fashion, home, fitness, and beauty finds into one calm, trusted storefront designed for confident buying.</p>
+        <span class="hero-badge">Spring deal event</span>
+        <h1>Shop top categories, deals, and everyday essentials.</h1>
+        <p class="hero-text">Fast browsing, clear prices, trusted checkout, and product picks across electronics, fashion, home, fitness, and beauty.</p>
         <div class="hero-actions">
-          <button class="primary-button" type="button" onclick="scrollToProducts()">Shop the edit</button>
-          <a class="secondary-link" href="about.html">Our standard</a>
-        </div>
-        <div class="hero-trust-grid">
-          <span class="trust-pill">4.8 average rating</span>
-          <span class="trust-pill">Express dispatch</span>
-          <span class="trust-pill">Protected checkout</span>
+          <button class="primary-button" type="button" onclick="scrollToProducts()">Shop deals</button>
+          <a class="secondary-link" href="#products">View best sellers</a>
         </div>
       </div>
-      <div class="hero-image-card" aria-label="Premium product showcase">
-        <img src="shopping-cart.jpg" alt="Premium shopping collection with accessories" />
-        <div class="hero-product-note">
-          <span>Editor pick</span>
-          <strong>Minimal tech, home, and wellness pieces.</strong>
-        </div>
+      <div class="deal-tile large-deal">
+        <img src="shopping-cart.jpg" alt="Shopping cart with electronics and accessories" />
+        <h2>Deals on tech and lifestyle picks</h2>
+        <a href="#products">Shop now</a>
       </div>
     </section>
 
-    <section class="collection-strip container" aria-label="Shop by collection">
-      <button type="button" class="category-button active" data-category="all">All</button>
-      <button type="button" class="category-button" data-category="electronics">Electronics</button>
-      <button type="button" class="category-button" data-category="fashion">Fashion</button>
-      <button type="button" class="category-button" data-category="home">Home</button>
-      <button type="button" class="category-button" data-category="fitness">Fitness</button>
-      <button type="button" class="category-button" data-category="beauty">Beauty</button>
-    </section>
-
-    <section class="stats-grid container" aria-label="Trust statistics">
-      <article class="stat-card">
-        <span>10k+</span>
-        <p>Orders curated for modern homes and wardrobes.</p>
+    <section class="deal-grid container" aria-label="Featured shopping deals">
+      <article class="deal-tile">
+        <h2>Refresh your tech</h2>
+        <img src="heaphone.jpg" alt="Wireless headphones" />
+        <button type="button" class="category-button" data-category="electronics">Shop electronics</button>
       </article>
-      <article class="stat-card">
-        <span>24h</span>
-        <p>Fast dispatch on eligible launch edit products.</p>
+      <article class="deal-tile">
+        <h2>Fitness under $50</h2>
+        <img src="resistance-bands.jpg" alt="Resistance bands" />
+        <button type="button" class="category-button" data-category="fitness">Shop fitness</button>
       </article>
-      <article class="stat-card">
-        <span>30 days</span>
-        <p>Simple returns with clear customer protection.</p>
+      <article class="deal-tile">
+        <h2>Style upgrades</h2>
+        <img src="sneaker.jpg" alt="Minimalist sneaker" />
+        <button type="button" class="category-button" data-category="fashion">Shop fashion</button>
       </article>
-      <article class="stat-card">
-        <span>4.8/5</span>
-        <p>Average review across the premium catalog.</p>
-      </article>
-    </section>
-
-    <section class="featured-panels container" aria-label="Why Shopora">
-      <article class="featured-card">
-        <span class="eyebrow">01</span>
-        <h3>Editorial merchandising</h3>
-        <p>Products are grouped by lifestyle, use case, and finish so customers can browse like a premium department store.</p>
-      </article>
-      <article class="featured-card">
-        <span class="eyebrow">02</span>
-        <h3>Clear buying confidence</h3>
-        <p>Ratings, stock status, return support, and secure payment signals stay visible before checkout.</p>
-      </article>
-      <article class="featured-card">
-        <span class="eyebrow">03</span>
-        <h3>Premium service layer</h3>
-        <p>Fast delivery promises and support links make the store feel active, trustworthy, and customer ready.</p>
+      <article class="deal-tile">
+        <h2>Home and wellness</h2>
+        <img src="yoga-mat.jpg" alt="Yoga mat" />
+        <button type="button" class="category-button" data-category="home">Shop home</button>
       </article>
     </section>
 
     <section class="products-section container" id="products" aria-labelledby="products-heading">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">The Shopora edit</p>
+          <p class="eyebrow">Results</p>
           <h2 id="products-heading">Featured products</h2>
-          <p>Browse premium items across electronics, fashion, home, fitness, and beauty with instant filtering.</p>
+          <p id="results-summary">Showing recommended products across all departments.</p>
         </div>
         <label class="sort-control">
           <span>Sort</span>
@@ -156,7 +142,25 @@
           </select>
         </label>
       </div>
-      <div id="product-list" class="products-grid"></div>
+      <div class="market-layout">
+        <aside class="filter-sidebar" aria-label="Product filters">
+          <h3>Departments</h3>
+          <button type="button" class="category-button active" data-category="all">All departments</button>
+          <button type="button" class="category-button" data-category="electronics">Electronics</button>
+          <button type="button" class="category-button" data-category="fashion">Fashion</button>
+          <button type="button" class="category-button" data-category="home">Home</button>
+          <button type="button" class="category-button" data-category="fitness">Fitness</button>
+          <button type="button" class="category-button" data-category="beauty">Beauty</button>
+          <h3>Customer reviews</h3>
+          <button type="button" class="rating-filter" data-rating="4.5">★★★★☆ & up</button>
+          <button type="button" class="rating-filter" data-rating="0">Clear rating</button>
+          <h3>Price</h3>
+          <button type="button" class="price-filter" data-price="50">Under $50</button>
+          <button type="button" class="price-filter" data-price="100">Under $100</button>
+          <button type="button" class="price-filter" data-price="0">Clear price</button>
+        </aside>
+        <div id="product-list" class="products-grid"></div>
+      </div>
     </section>
 
     <section class="brand-strip container" aria-label="Trusted brands">
