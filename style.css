@@ -413,7 +413,7 @@ textarea:focus-visible {
 .featured-panels,
 .testimonials-grid,
 .faq-list,
-.product-grid {
+.products-grid {
   display: grid;
   gap: 1.5rem;
 }
@@ -482,7 +482,7 @@ textarea:focus-visible {
   max-width: 44rem;
 }
 
-.product-grid {
+.products-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
@@ -1098,7 +1098,7 @@ textarea:focus-visible {
 
   .stats-grid,
   .featured-panels,
-  .product-grid,
+  .products-grid,
   .testimonials-grid,
   .faq-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1115,7 +1115,7 @@ textarea:focus-visible {
   .hero,
   .stats-grid,
   .featured-panels,
-  .product-grid,
+  .products-grid,
   .testimonials-grid,
   .faq-list,
   .footer-grid {
@@ -1141,7 +1141,7 @@ textarea:focus-visible {
 
   .stats-grid,
   .featured-panels,
-  .product-grid,
+  .products-grid,
   .testimonials-grid,
   .faq-list {
     gap: 1rem;
@@ -1435,11 +1435,7 @@ body {
   padding: 0.9rem 1rem;
 }
 
-section.product-grid {
-  display: block;
-}
-
-#product-list.product-grid {
+#product-list.products-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.15rem;
@@ -1594,7 +1590,7 @@ section.product-grid {
     grid-template-columns: 1fr;
   }
 
-  #product-list.product-grid {
+  #product-list.products-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1614,7 +1610,7 @@ section.product-grid {
   .featured-panels,
   .testimonials-grid,
   .faq-list,
-  #product-list.product-grid,
+  #product-list.products-grid,
   .brand-strip {
     grid-template-columns: 1fr;
   }
