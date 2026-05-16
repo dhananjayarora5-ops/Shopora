@@ -1,5 +1,5 @@
-const wishlistTarget = document.getElementById('wishlist-list');
-const elements = {
+﻿const elements = {
+  wishlistList: document.getElementById('wishlist-list'),
   cartCount: document.getElementById('cart-count'),
   cartToggle: document.getElementById('cart-toggle'),
   cartSidebar: document.getElementById('cart-sidebar'),
@@ -7,8 +7,9 @@ const elements = {
   cartItems: document.getElementById('cart-items'),
   cartTotal: document.getElementById('cart-total'),
   overlay: document.getElementById('overlay'),
+  wishlistCount: document.getElementById('wishlist-count'),
   searchInput: document.getElementById('search-input'),
-  searchButton: document.getElementById('search-button')
+  searchButton: document.getElementById('search-button'),
 };
 
 let cart = {};
@@ -17,11 +18,9 @@ let wishlist = new Set();
 function loadCart() {
   try {
     const raw = localStorage.getItem('shopora_cart');
-    if (raw) {
-      cart = JSON.parse(raw);
-    }
+    return raw ? JSON.parse(raw) : {};
   } catch (error) {
-    cart = {};
+    return {};
   }
 }
 
@@ -32,11 +31,9 @@ function saveCart() {
 function loadWishlist() {
   try {
     const raw = localStorage.getItem('shopora_wishlist');
-    if (raw) {
-      JSON.parse(raw).forEach((id) => wishlist.add(Number(id)));
-    }
+    return raw ? new Set(JSON.parse(raw).map(Number)) : new Set();
   } catch (error) {
-    wishlist = new Set();
+    return new Set();
   }
 }
 
@@ -45,14 +42,41 @@ function saveWishlist() {
 }
 
 function updateHeaderCounts() {
-  if (elements.cartCount) {
-    const total = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
-    elements.cartCount.textContent = total;
+  const total = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+  if (elements.cartCount) elements.cartCount.textContent = total;
+  if (elements.wishlistCount) elements.wishlistCount.textContent = wishlist.size;
+}
+
+function renderWishlist() {
+  if (!elements.wishlistList) return;
+  const items = Array.from(wishlist).map((id) => products.find((product) => product.id === Number(id))).filter(Boolean);
+  if (!items.length) {
+    elements.wishlistList.innerHTML = '<div class="wishlist-empty"><h3>Your wishlist is empty</h3><p>Add products to your wishlist to save them for later.</p></div>';
+    return;
   }
+
+  elements.wishlistList.innerHTML = items.map((product) => `
+    <article class="wishlist-item">
+      <img src="${product.image}" alt="${product.alt}" loading="lazy" />
+      <div class="wishlist-item-content">
+        <h3 class="wishlist-item-title"><a href="product.html?id=${product.id}">${product.title}</a></h3>
+        <p class="product-description">${product.description}</p>
+        <div class="product-card-footer">
+          <span class="product-price">$${product.price.toFixed(2)}</span>
+          <button class="secondary-button" type="button" onclick="addToCart(${product.id})">Add to cart</button>
+        </div>
+        <div class="wishlist-item-actions">
+          <button class="action-button" type="button" onclick="removeFromWishlist(${product.id})">Remove</button>
+          <a class="secondary-link" href="product.html?id=${product.id}">View details</a>
+        </div>
+      </div>
+    </article>
+  `).join('');
 }
 
 function renderCartItems() {
   const itemIds = Object.keys(cart);
+  if (!elements.cartItems) return;
   if (!itemIds.length) {
     elements.cartItems.innerHTML = '<p>Your cart is empty. Add a product to get started.</p>';
     return;
@@ -82,106 +106,77 @@ function renderCartItems() {
     `;
   }).join('');
 
-  const total = Object.keys(cart).reduce((sum, id) => {
-    const product = products.find((item) => item.id === Number(id));
-    return sum + (product ? product.price * cart[id] : 0);
-  }, 0);
-  elements.cartTotal.textContent = '$' + total.toFixed(2);
-}
-
-function renderWishlist() {
-  if (!wishlist.size) {
-    wishlistTarget.innerHTML = `
-      <div class="wishlist-empty">
-        <h3>Your wishlist is empty</h3>
-        <p>Save items while you browse and return later to purchase them.</p>
-        <a class="secondary-link" href="index.html">Shop now</a>
-      </div>
-    `;
-    return;
+  if (elements.cartTotal) {
+    const total = itemIds.reduce((sum, id) => {
+      const product = products.find((item) => item.id === Number(id));
+      return sum + (product ? product.price * cart[id] : 0);
+    }, 0);
+    elements.cartTotal.textContent = '$' + total.toFixed(2);
   }
-
-  wishlistTarget.innerHTML = Array.from(wishlist).map((id) => {
-    const product = products.find((item) => item.id === Number(id));
-    if (!product) return '';
-    return `
-      <article class="wishlist-item">
-        <img src="${product.image}" alt="${product.alt}" loading="lazy" />
-        <div class="wishlist-item-content">
-          <div>
-            <h3 class="wishlist-item-title"><a href="product.html?id=${product.id}">${product.title}</a></h3>
-            <p class="product-price">$${product.price.toFixed(2)}</p>
-            <p class="product-description">${product.description}</p>
-          </div>
-          <div class="wishlist-item-actions">
-            <button class="primary-button" type="button" onclick="addToCart(${product.id})">Add to cart</button>
-            <button class="secondary-button" type="button" onclick="removeFromWishlist(${product.id})">Remove</button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
 }
 
 function addToCart(productId) {
+  const product = products.find((item) => item.id === productId);
+  if (!product) return;
   cart[productId] = cart[productId] ? cart[productId] + 1 : 1;
   saveCart();
-  renderCartItems();
   updateHeaderCounts();
+  renderCartItems();
 }
 
 function removeFromWishlist(productId) {
   wishlist.delete(productId);
   saveWishlist();
+  updateHeaderCounts();
   renderWishlist();
 }
 
 function changeQuantity(productId, delta) {
   if (!cart[productId]) return;
   cart[productId] += delta;
-  if (cart[productId] < 1) {
-    delete cart[productId];
-  }
+  if (cart[productId] < 1) delete cart[productId];
   saveCart();
-  renderCartItems();
   updateHeaderCounts();
+  renderCartItems();
 }
 
 function removeFromCart(productId) {
   delete cart[productId];
   saveCart();
-  renderCartItems();
   updateHeaderCounts();
+  renderCartItems();
 }
 
 function openCart() {
-  elements.cartSidebar.classList.add('open');
-  elements.overlay.classList.add('active');
+  if (elements.cartSidebar) elements.cartSidebar.classList.add('open');
+  if (elements.overlay) elements.overlay.classList.add('active');
   renderCartItems();
 }
 
 function closeCart() {
-  elements.cartSidebar.classList.remove('open');
-  elements.overlay.classList.remove('active');
+  if (elements.cartSidebar) elements.cartSidebar.classList.remove('open');
+  if (elements.overlay) elements.overlay.classList.remove('active');
 }
 
 window.addEventListener('load', () => {
-  loadCart();
-  loadWishlist();
+  cart = loadCart();
+  wishlist = loadWishlist();
   updateHeaderCounts();
   renderWishlist();
+
+  if (elements.cartToggle) elements.cartToggle.addEventListener('click', openCart);
+  if (elements.cartClose) elements.cartClose.addEventListener('click', closeCart);
+  if (elements.overlay) elements.overlay.addEventListener('click', closeCart);
+  if (elements.searchButton && elements.searchInput) {
+    elements.searchButton.addEventListener('click', () => {
+      const query = elements.searchInput.value.trim();
+      window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+    });
+    elements.searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        const query = elements.searchInput.value.trim();
+        window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+      }
+    });
+  }
 });
-
-elements.cartToggle.addEventListener('click', openCart);
-elements.cartClose.addEventListener('click', closeCart);
-elements.overlay.addEventListener('click', closeCart);
-
-elements.searchButton.addEventListener('click', () => {
-  const query = elements.searchInput.value.trim();
-  window.location.href = `index.html?search=${encodeURIComponent(query)}`;
-});
-
-globalThis.changeQuantity = changeQuantity;
-globalThis.removeFromCart = removeFromCart;
-globalThis.addToCart = addToCart;
-globalThis.removeFromWishlist = removeFromWishlist;

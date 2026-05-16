@@ -1,19 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shopora is a premium demo e-commerce website with electronics, fashion, home goods, and accessories. Browse products, filter categories, search items, and manage your cart in a responsive shopping experience." />
-  <meta name="keywords" content="ecommerce, startup, premium shop, online store, product showcase, shopora" />
+  <title>Shopora | Premium Online Shopping for Modern Brands</title>
+  <meta name="description" content="Shopora is a premium e-commerce storefront with curated collections, trusted checkout, and a modern shopping experience." />
+  <meta name="keywords" content="premium ecommerce, online store, shopora, startup shopping, modern storefront" />
   <meta name="theme-color" content="#1f2a55" />
-  <meta property="og:title" content="Shopora — Premium Demo E-commerce" />
-  <meta property="og:description" content="Discover Shopora, a premium demo storefront with polished product browsing, smart cart interactions, and a modern mobile-ready design." />
+  <meta property="og:title" content="Shopora | Premium Online Shopping" />
+  <meta property="og:description" content="Discover Shopora's premium shopping experience with curated collections, exclusive offers, and trusted checkout." />
   <meta property="og:image" content="shopping-cart.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://github.com/dhananjayarora5-ops/Shopora" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Shopora | Premium Demo E-commerce" />
-  <meta name="twitter:description" content="Experience Shopora's refined shopping UI with curated product cards, fast checkout, and mobile-first design." />
+  <meta name="twitter:title" content="Shopora | Premium Online Shopping" />
+  <meta name="twitter:description" content="Experience an investor-ready storefront with trusted shopping, sleek product browsing, and responsive mobile design." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -26,86 +27,220 @@
   </div>
   <header class="site-header">
     <div class="announcement container">
-      <p>Spring launch sale: free delivery on orders over $99 — premium curation for everyday life.</p>
+      Free shipping on orders over $99 • Secure payments • 30-day premium returns.
     </div>
     <div class="header-top container">
-      <a class="brand" href="#home">
+      <a class="brand" href="index.html">
         <span class="brand-mark">S</span>
         <span class="brand-text">Shopora</span>
       </a>
-      <div class="search-group">
-        <label for="search-input" class="sr-only">Search products</label>
-        <input id="search-input" type="search" placeholder="Search for headphones, jackets, cameras..." />
-        <button id="search-button" type="button">Search</button>
-      </div>
-      <nav class="header-actions" aria-label="User actions">
-        <button type="button" class="action-button">Account</button>
-        <a href="wishlist.html" id="wishlist-toggle" class="action-button">Wishlist <span id="wishlist-count">0</span></a>
-        <button type="button" id="cart-toggle" class="action-button">Cart <span id="cart-count">0</span></button>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="index.html#products">Shop</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
       </nav>
-    </div>
-    <div class="category-nav container" aria-label="Product categories">
-      <button class="category-button active" data-category="all">All</button>
-      <button class="category-button" data-category="electronics">Electronics</button>
-      <button class="category-button" data-category="fashion">Fashion</button>
-      <button class="category-button" data-category="home">Home</button>
-      <button class="category-button" data-category="fitness">Fitness</button>
-      <button class="category-button" data-category="beauty">Beauty</button>
+      <div class="header-actions">
+        <div class="search-group">
+          <label for="search-input" class="sr-only">Search products</label>
+          <input id="search-input" type="search" placeholder="Search for headphones, home decor, sneakers..." />
+          <button id="search-button" type="button">Search</button>
+        </div>
+        <button type="button" class="action-button user-menu">
+          Hi, Guest
+          <div class="user-menu-panel">
+            <a href="about.html">Your profile</a>
+            <a href="contact.html">Support</a>
+          </div>
+        </button>
+        <a href="wishlist.html" class="action-button">Wishlist <span class="badge" id="wishlist-count">0</span></a>
+        <div class="cart-preview">
+          <button id="cart-toggle" class="action-button">Cart <span class="badge" id="cart-count">0</span></button>
+          <div class="cart-panel">
+            <h4>Cart preview</h4>
+            <div class="cart-preview-items">
+              <p class="cart-empty-note">Your cart is currently empty.</p>
+            </div>
+            <a class="secondary-link" href="checkout.html">Go to checkout</a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero container" id="home">
       <div class="hero-copy">
-        <span class="hero-badge">Featured drop</span>
-        <p class="eyebrow">Modern shopping for everyday living</p>
-        <h1>Discover premium products curated for your lifestyle.</h1>
-        <p class="hero-text">Shopora combines clean design, category browsing, and a smart cart experience so you can find the perfect item with confidence.</p>
+        <span class="hero-badge">New collection</span>
+        <h1>Shopora brings premium shopping to your daily life.</h1>
+        <p class="hero-text">Curated collections, trusted checkout, and polished discovery for modern buyers — built to feel like a real online storefront.</p>
         <div class="hero-actions">
-          <button class="primary-button" type="button" onclick="scrollToProducts()">Shop Latest Deals</button>
-          <a class="secondary-link" href="#products">View all collections</a>
+          <button class="primary-button" type="button" onclick="scrollToProducts()">Shop latest deals</button>
+          <a class="secondary-link" href="about.html">Learn about Shopora</a>
         </div>
         <div class="hero-trust-grid">
-          <span class="trust-pill">Free shipping over $49</span>
-          <span class="trust-pill">Secure checkout</span>
-          <span class="trust-pill">24/7 premium support</span>
+          <span class="trust-pill">Free shipping over $99</span>
+          <span class="trust-pill">Secure payments</span>
+          <span class="trust-pill">30-day return policy</span>
         </div>
       </div>
-      <div class="hero-image-card" aria-label="Featured shopping collection">
-        <img src="shopping-cart.jpg" alt="Shopping cart with electronics and accessories" />
+      <div class="hero-image-card" aria-label="Premium product showcase">
+        <img src="shopping-cart.jpg" alt="Premium shopping collection with accessories" />
       </div>
     </section>
 
-    <section class="filter-panel container" aria-label="Product filters">
-      <div class="filter-item">
-        <label for="sort-select">Sort by price</label>
-        <select id="sort-select">
-          <option value="default">Recommended</option>
-          <option value="low-high">Price: Low to High</option>
-          <option value="high-low">Price: High to Low</option>
-        </select>
-      </div>
-      <div class="filter-item">
-        <span class="filter-label">Showing products in <strong id="filter-label">All</strong></span>
-      </div>
+    <section class="stats-grid container" aria-label="Trust statistics">
+      <article class="stat-card">
+        <span>10,000+</span>
+        <p>Happy customers</p>
+      </article>
+      <article class="stat-card">
+        <span>Fast delivery</span>
+        <p>Next-day fulfillment and premium tracking.</p>
+      </article>
+      <article class="stat-card">
+        <span>Secure payments</span>
+        <p>Visa, Mastercard, PayPal, Apple Pay supported.</p>
+      </article>
+      <article class="stat-card">
+        <span>Trusted support</span>
+        <p>Live customer care available 24/7.</p>
+      </article>
+    </section>
+
+    <section class="featured-panels container" aria-label="Why Shopora">
+      <article class="featured-card">
+        <h3>Curated for premium quality</h3>
+        <p>We hand-select every product for design, performance, and customer satisfaction.</p>
+      </article>
+      <article class="featured-card">
+        <h3>Fast and reliable delivery</h3>
+        <p>Track every order with confidence, from checkout to your door.</p>
+      </article>
+      <article class="featured-card">
+        <h3>Real support and protection</h3>
+        <p>Secure checkout, easy returns, and a clear policy built for shoppers.</p>
+      </article>
     </section>
 
     <section class="product-grid container" id="products" aria-labelledby="products-heading">
       <div class="section-heading">
-        <h2 id="products-heading">Featured products</h2>
-        <p>Explore curated electronics, fashion, home essentials, fitness accessories, and beauty finds.</p>
+        <div>
+          <h2 id="products-heading">Featured products</h2>
+          <p>Browse premium items across electronics, fashion, home, fitness, and beauty.</p>
+        </div>
       </div>
-      <div id="product-list" class="grid-list"></div>
+      <div id="product-list" class="product-grid"></div>
     </section>
 
-    <section class="newsletter-section container">
+    <section class="brand-strip container" aria-label="Trusted brands">
+      <div class="brand-logo">Atlas Gear</div>
+      <div class="brand-logo">Nimbus Home</div>
+      <div class="brand-logo">Luxe Fit</div>
+      <div class="brand-logo">Aura Studio</div>
+      <div class="brand-logo">Core Wireless</div>
+    </section>
+
+    <section class="testimonials container" aria-labelledby="testimonials-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="testimonials-heading">Customers trust Shopora</h2>
+          <p>Real feedback from people who love the premium shopping experience.</p>
+        </div>
+      </div>
+      <div class="testimonials-grid">
+        <article class="testimonial-card">
+          <p>“Shopora feels like a real high-end storefront. The product selection is clean and the checkout feels trustworthy.”</p>
+          <div class="testimonial-meta">
+            <span class="avatar">A</span>
+            <div>
+              <strong>Amanda G.</strong>
+              <p>Verified buyer</p>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <p>“Fast delivery, excellent packaging, and the website experience is polished. It’s the kind of store I would shop from for real.”</p>
+          <div class="testimonial-meta">
+            <span class="avatar">J</span>
+            <div>
+              <strong>Jordan S.</strong>
+              <p>Fashion buyer</p>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <p>“The product cards and mobile browsing are beautifully designed. Everything looks premium and trustworthy.”</p>
+          <div class="testimonial-meta">
+            <span class="avatar">L</span>
+            <div>
+              <strong>Liam T.</strong>
+              <p>Home design shopper</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust-grid container" aria-labelledby="trust-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="trust-heading">Trusted shopping, built for confidence</h2>
+          <p>Security, shipping, and protection designed to feel premium and reliable.</p>
+        </div>
+      </div>
+      <div class="featured-panels">
+        <article class="featured-card">
+          <h3>Secure payments</h3>
+          <p>Shopora supports the most trusted payment methods with encrypted checkout.</p>
+        </article>
+        <article class="featured-card">
+          <h3>30-day returns</h3>
+          <p>Easy returns and refunds for eligible purchases within a full month.</p>
+        </article>
+        <article class="featured-card">
+          <h3>Delivery coverage</h3>
+          <p>Fast shipping available for most products with real tracking updates.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq container" aria-labelledby="faq-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <p>Answers to the most common customer questions around shipping, payments, and returns.</p>
+        </div>
+      </div>
+      <div class="faq-list">
+        <article class="faq-card">
+          <h3>How long does shipping take?</h3>
+          <p>Most orders ship within 1–2 business days and arrive within 3–5 business days, depending on your location.</p>
+        </article>
+        <article class="faq-card">
+          <h3>What payment methods are accepted?</h3>
+          <p>We accept Visa, Mastercard, PayPal, Apple Pay, and other major payment providers.</p>
+        </article>
+        <article class="faq-card">
+          <h3>Can I return a product?</h3>
+          <p>Yes — we offer a 30-day return window for eligible items. See our return policy for details.</p>
+        </article>
+        <article class="faq-card">
+          <h3>Is my payment information secure?</h3>
+          <p>Yes — Shopora uses encrypted checkout and follows modern security practices to protect your payment data.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="newsletter-section container" aria-labelledby="newsletter-heading">
       <div class="newsletter-card">
         <div class="newsletter-copy">
-          <p class="eyebrow">Stay ahead</p>
-          <h2>Get the newest arrivals and launch previews.</h2>
-          <p>Join our curated mailing list for early access to drops, exclusive offers, and premium styling ideas.</p>
+          <p class="eyebrow">Stay in the loop</p>
+          <h2 id="newsletter-heading">Join our premium shopping newsletter.</h2>
+          <p>Receive early access to launches, exclusive promotions, and curated product drops.</p>
         </div>
-        <form class="newsletter-form" aria-label="Subscribe to newsletter">
+        <form class="newsletter-form" aria-label="Subscribe to Shopora newsletter">
           <input type="email" placeholder="Enter your email address" aria-label="Email address" />
           <button class="primary-button" type="submit">Subscribe</button>
         </form>
@@ -114,52 +249,61 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-top container">
+    <div class="container footer-grid">
       <div class="footer-brand">
         <a class="brand footer-logo" href="index.html">
           <span class="brand-mark">S</span>
           <span class="brand-text">Shopora</span>
         </a>
-        <p>Premium product discovery for modern buyers.</p>
+        <p>Investor-ready e-commerce design with premium polish and strong brand trust.</p>
       </div>
-      <div class="footer-columns">
-        <div class="footer-column">
-          <h3>Company</h3>
-          <a href="#">About</a>
-          <a href="#">Careers</a>
-          <a href="#">Press</a>
-        </div>
-        <div class="footer-column">
-          <h3>Support</h3>
-          <a href="#">Help Center</a>
-          <a href="#">Shipping</a>
-          <a href="#">Returns</a>
-        </div>
-        <div class="footer-column">
-          <h3>Explore</h3>
-          <a href="product.html?id=1">Best sellers</a>
-          <a href="wishlist.html">Wishlist</a>
-          <a href="#">New arrivals</a>
-        </div>
+      <div class="footer-column">
+        <h3>Company</h3>
+        <a href="about.html">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-column">
+        <h3>Support</h3>
+        <a href="contact.html">Contact</a>
+        <a href="shipping-policy.html">Shipping</a>
+        <a href="return-policy.html">Returns</a>
+      </div>
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Newsletter</h3>
+        <p>Get launch updates and premium offers delivered to your inbox.</p>
+        <input type="email" placeholder="Email address" aria-label="Email address" />
+        <button type="button">Subscribe</button>
       </div>
     </div>
-    <div class="footer-bottom container">
+    <div class="container footer-bottom">
       <p>© 2026 Shopora. Crafted for premium online shopping experiences.</p>
+      <div class="social-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
     </div>
   </footer>
 
   <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
     <div class="cart-header">
-      <h2>Shopping Cart</h2>
+      <h2>Shopping cart</h2>
       <button id="cart-close" aria-label="Close cart sidebar">×</button>
     </div>
     <div id="cart-items" class="cart-items"></div>
     <div class="cart-footer">
       <div class="cart-totals">
-        <span>Total</span>
+        <span>Order total</span>
         <strong id="cart-total">$0.00</strong>
       </div>
-      <button class="primary-button full-width" type="button" id="checkout-button">Proceed to Checkout</button>
+      <button class="primary-button full-width" type="button" id="checkout-button">Proceed to checkout</button>
     </div>
   </aside>
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions | Shopora</title>
+  <meta name="description" content="Read the Shopora terms and conditions for shopping, returns, and site usage." />
+  <meta name="keywords" content="Shopora, terms, conditions, ecommerce" />
+  <meta name="theme-color" content="#1f2a55" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="announcement container">
+      Free shipping on orders over $99 • Secure payments • 30-day premium returns.
+    </div>
+    <div class="header-top container">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">Shopora</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Shop</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="search-group">
+          <label for="search-input" class="sr-only">Search products</label>
+          <input id="search-input" type="search" placeholder="Search for headphones, jackets, cameras..." />
+          <button id="search-button" type="button">Search</button>
+        </div>
+        <a href="wishlist.html" class="action-button">Wishlist <span class="badge" id="wishlist-count">0</span></a>
+        <button type="button" id="cart-toggle" class="action-button">Cart <span class="badge" id="cart-count">0</span></button>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero" style="padding: 4rem 0 2rem;">
+      <span class="hero-badge">Terms</span>
+      <h1>Terms and conditions for using Shopora.</h1>
+      <p class="hero-text">Please review our terms before placing an order to understand your rights and obligations.</p>
+    </section>
+    <section class="featured-card">
+      <h2>Order acceptance</h2>
+      <p>All purchases are subject to availability and applicable laws. Shopora reserves the right to cancel orders for valid reasons.</p>
+      <h3>Pricing</h3>
+      <p>Product prices are displayed in USD and may change based on promotions or availability.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand footer-logo" href="index.html">
+          <span class="brand-mark">S</span>
+          <span class="brand-text">Shopora</span>
+        </a>
+        <p>Investor-ready e-commerce design with premium polish and strong brand trust.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Company</h3>
+        <a href="about.html">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-column">
+        <h3>Support</h3>
+        <a href="contact.html">Contact</a>
+        <a href="shipping-policy.html">Shipping</a>
+        <a href="return-policy.html">Returns</a>
+      </div>
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Newsletter</h3>
+        <p>Get launch updates and premium offers delivered to your inbox.</p>
+        <input type="email" placeholder="Email address" aria-label="Email address" />
+        <button type="button">Subscribe</button>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 Shopora. Crafted for premium online shopping experiences.</p>
+      <div class="social-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+  <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Shopping cart</h2>
+      <button id="cart-close" aria-label="Close cart sidebar">×</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-totals">
+        <span>Total</span>
+        <strong id="cart-total">$0.00</strong>
+      </div>
+      <button class="primary-button full-width" type="button" id="checkout-button">Proceed to checkout</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
