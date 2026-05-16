@@ -160,7 +160,8 @@ textarea:focus-visible {
 }
 
 .search-group {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
   align-items: center;
   min-width: 0;
   width: 100%;
@@ -173,15 +174,16 @@ textarea:focus-visible {
 }
 
 .search-group input {
-  flex: 1;
+  min-width: 0;
   border: none;
   padding: 1rem 1.2rem;
   background: transparent;
 }
 
 .search-group button {
-  flex: 0 0 120px;
-  min-width: 120px;
+  width: 100%;
+  min-width: 0;
+  white-space: nowrap;
   border: none;
   background: var(--primary);
   color: white;
@@ -1653,6 +1655,10 @@ body {
 @media (max-width: 560px) {
   .header-actions {
     grid-template-columns: 1fr;
+  }
+
+  .search-group {
+    grid-template-columns: minmax(0, 1fr) 104px;
   }
 
   .action-button,
