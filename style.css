@@ -263,9 +263,22 @@ select:focus-visible {
 }
 
 .secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   color: var(--primary-dark);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.98);
   border: 1px solid rgba(37, 99, 235, 0.12);
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+}
+
+.secondary-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(37, 99, 235, 0.12);
 }
 
 .hero-image-card {
