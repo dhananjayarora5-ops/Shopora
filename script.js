@@ -309,8 +309,10 @@ function attachWishlistHandlers() {
   const buttons = document.querySelectorAll('.wish-button');
   buttons.forEach((btn) => {
     const id = Number(btn.dataset.productId);
-    btn.classList.toggle('active', wishlist.has(id));
-    btn.setAttribute('aria-pressed', wishlist.has(id));
+    const isFav = wishlist.has(id);
+    btn.classList.toggle('active', isFav);
+    btn.textContent = isFav ? '♥' : '♡';
+    btn.setAttribute('aria-pressed', isFav);
     if (btn._wishHandler) btn.removeEventListener('click', btn._wishHandler);
     btn._wishHandler = () => {
       toggleWishlist(id, btn);
@@ -323,10 +325,12 @@ function toggleWishlist(productId, btnEl) {
   if (wishlist.has(productId)) {
     wishlist.delete(productId);
     btnEl.classList.remove('active');
+    btnEl.textContent = '♡';
     btnEl.setAttribute('aria-pressed', 'false');
   } else {
     wishlist.add(productId);
     btnEl.classList.add('active');
+    btnEl.textContent = '♥';
     btnEl.setAttribute('aria-pressed', 'true');
   }
   saveWishlist();
