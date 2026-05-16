@@ -224,10 +224,6 @@ window.addEventListener('load', () => {
 
 elements.searchButton.addEventListener('click', applySearch);
 
-if (elements.wishlistToggle) {
-  elements.wishlistToggle.addEventListener('click', showWishlist);
-}
-
 elements.searchInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     applySearch();

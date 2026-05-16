@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shopora individual product detail page with zoom image preview and product information." />
-  <title>Shopora | Product Details</title>
+  <meta name="description" content="Shopora wishlist page with saved favorite products and quick actions to add to cart." />
+  <title>Shopora | Wishlist</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -30,9 +30,20 @@
     </div>
   </header>
 
-  <main class="product-page container">
-    <a class="back-link" href="index.html">← Back to shop</a>
-    <section id="product-detail" class="product-detail"></section>
+  <main class="wishlist-page container">
+    <section class="wishlist-hero">
+      <div>
+        <div class="section-heading">
+          <h2>Saved for later</h2>
+          <p>Review your wishlist items and add them to cart when you're ready.</p>
+        </div>
+      </div>
+      <div>
+        <a class="secondary-link" href="index.html">Continue shopping</a>
+      </div>
+    </section>
+
+    <section id="wishlist-list" class="wishlist-grid"></section>
   </main>
 
   <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
@@ -53,6 +64,6 @@
   <div class="overlay" id="overlay"></div>
 
   <script src="data.js"></script>
-  <script src="product.js"></script>
+  <script src="wishlist.js"></script>
 </body>
 </html>

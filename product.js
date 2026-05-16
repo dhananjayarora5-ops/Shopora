@@ -236,10 +236,6 @@ window.addEventListener('load', () => {
   renderDetailPage();
 });
 
-if (elements.wishlistToggle) {
-  elements.wishlistToggle.addEventListener('click', showWishlist);
-}
-
 elements.cartToggle.addEventListener('click', openCart);
 elements.cartClose.addEventListener('click', closeCart);
 elements.overlay.addEventListener('click', closeCart);
