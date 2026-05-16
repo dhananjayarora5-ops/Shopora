@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shopora individual product detail page with zoom image preview and product information." />
+  <title>Shopora | Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="announcement container">
+      <p>Spring launch sale: free delivery on orders over $99 — premium curation for everyday life.</p>
+    </div>
+    <div class="header-top container">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">Shopora</span>
+      </a>
+      <div class="search-group">
+        <label for="search-input" class="sr-only">Search products</label>
+        <input id="search-input" type="search" placeholder="Search for headphones, jackets, cameras..." />
+        <button id="search-button" type="button">Search</button>
+      </div>
+      <nav class="header-actions" aria-label="User actions">
+        <button type="button" class="action-button">Account</button>
+        <button type="button" id="wishlist-toggle" class="action-button">Wishlist <span id="wishlist-count">0</span></button>
+        <button type="button" id="cart-toggle" class="action-button">Cart <span id="cart-count">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="product-page container">
+    <a class="back-link" href="index.html">← Back to shop</a>
+    <section id="product-detail" class="product-detail"></section>
+  </main>
+
+  <aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Shopping Cart</h2>
+      <button id="cart-close" aria-label="Close cart sidebar">×</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-totals">
+        <span>Total</span>
+        <strong id="cart-total">$0.00</strong>
+      </div>
+      <button class="primary-button full-width" type="button" id="checkout-button">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <script src="data.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>
